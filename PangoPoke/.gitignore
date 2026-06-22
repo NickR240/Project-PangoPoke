@@ -1,0 +1,31 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+
+# Build folders
+Debug/
+Release/
+x64/
+x86/
+build/
+out/
+
+# Compiled files
+*.exe
+*.dll
+*.obj
+*.pdb
+*.ilk
+
+# Qt-generated files
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.moc
+
+# Temporary files
+*.log
+*.tmp
