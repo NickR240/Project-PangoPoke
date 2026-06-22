@@ -1,0 +1,429 @@
+<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" FontFamily="Segoe UI" FontSize="12">
+  <FlowDocument.Tag><![CDATA[{
+  "timestamp": "2026-06-22 10:54:44",
+  "files": {
+    "C:\\Users\\NicholasRieches\\source\\repos\\PangoPoke\\PangoPoke\\PangoPoke.vcxproj": {
+      "before": "7VlfT+NGEL/nSv0EfbEsqsADcUiAQs/xqZdQGjVAdOHPS6XTxp4kW+xda3fNQXv9Lv2oHdvrdZw/HBEtqBw8IHl3Znb888xvZjZ/f/fmjfvuNgqtGxCScta2d+oN2wLm84CySdtO1Hj7wH7nffuNOxD8d/CV1YUxSUJ1TsQElGzb7xMaBraFVhg+TZWKf3Qc6U8hIrIeUV9wyceq7vPICeAGQh6DcCI5StWcZqPRstG6Zbk9BdGx4Els9ckIwratD+xwNqaTRBCFDspcGMWX7Vo95odJAG27C6Nk8vmKslaz0ECdiikvk3Gd6mLqSvrnDkKixlxEXmbEdcxzLoELOR7L1L/g3AcIgUj4gnta6jkczNG73d99LHZo4j9B7j7XHozbms65jonQPGAxADCU1V0laI9DPiJhGaaXHR0nl3mGeTsH9YbrLCzrqPoV7j5xEeRBl2q6TrGkJbS544QG3p+keeDvNff2t3f3xs3t3eY+bB8etg63xz9AY9dvwn4raP5lQjXT0WY+cK5OSQQyJj54A8ImfMCvwXWqG1oacyDgn2Se80UmmDdqpG90r0hqJnOjBEwnfRRzoSz9Um17Y/Oyo5llQNR067cTQyCdOK5r7qnHCL20LWfZh8CEDGjKFW27trFZSc+tzxubhfdbtXa7NkMTNbvgnYpKkQFV7ji/i8H7KY5D6me0NJek2baG7kJCdkqfjgQRFKSnRII4L65rhcLBc85DCcq72dndK5OoWNXCnSkRxFcghih5wSjyNtqurK7EHkEvP4e1DmwVAns64MaYWP8acldTHgJCMBEkOosVjegf2afUn2fl9rMCb4j56UB/OdGKfP90sL2UWO2tR9BVYs6VK/Xx6FYBS1tNJCyFLaaulFhcs4My2dnSUFEeIttBkFPywzQKjhtOAZtVey2WqxSHzCcsYot4IJGLtGh2qZgvVzPVpp6gWFG3ZrgWbqlUchMr1dp2alumZPW5T0KsR12iSFE/THl8ELSPAWquHLxCZcaVFQ1HxkSvMK2GqYiolwdUkWcVXktT/4Skk7JJ2nTWwG6XsqyVzaVnaGO9zrYItU7Y4VFMQ9ALyGdXRDCk4X46mXvZ/xb28rOLecODosNuvzMF/1p3SObRCAwEIP/7ICUXpe/Su+qdtppvP3aP3l8cv/3YOTsdnvWP3n6/uUJ+K50UllsyR6U9Og7nhPlwgi2vdml+1Yj3cb5JyASGirCA4HwlVeDHcRPnloWtXAmb6Dmw3D5l1yVww2Q0vJP4lTw8VWIv6Trlkjn4GBjgzUU+AvRyn9PZRDu8crtwYuZM94QwOgapSh+OGBmFMIRJBEz9AiTWZhfXC3sVG/lEW36p2eL7yPArEji7PKmVQ9QcpusF4M8J81PwsjBNkcHA1W+8dMt8hR5TgmLX4RdixRC2ZMMomfjOO2DzaARWBWke7qev4f71hPvMXPbMXPvKsl8hy1bapPm69SI59pVd/2dhXvYWGI+dUP9QU/5gc0Io01fI9anpguev3Ks38Jkl3dGWliK0VMfmrjCyXKo8b1Z24Y5/cdy/935a5T+KFUfr24JKr28uQPQ19/LbDHNn7/0D",
+      "after": "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"
+    }
+  }
+}]]></FlowDocument.Tag>
+  <Section Margin="0,24" TextAlignment="Center">
+    <Paragraph FontSize="24" FontWeight="Bold" Margin="12,0">
+      <LineBreak />
+      <Span Foreground="Gray">Qt Visual Studio Tools</Span>
+    </Paragraph>
+    <Paragraph FontSize="42" Margin="12,0" FontWeight="Bold">
+      <Span TextDecorations="Underline">Project Format Conversion</Span>
+    </Paragraph>
+    <Paragraph Margin="12,8" FontSize="18">
+      <Span>Report generated on 2026-06-22 10:54:44</Span>
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Files</Span>
+    </Paragraph>
+    <Paragraph Margin="24,12,0,0">
+      <Span FontFamily="Consolas" FontSize="14" Background="WhiteSmoke"><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+      <LineBreak />
+      <Hyperlink NavigateUri="file://C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj?before">[Before]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj?after">[After]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj?diff&amp;before&amp;after">
+                        [Diff before/after]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj?diff&amp;before&amp;current">
+                        [Diff before/current]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj?diff&amp;after&amp;current">
+                        [Diff after/current]
+                    </Hyperlink>
+      <LineBreak />
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Changes</Span>
+    </Paragraph>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Enabling multi-processor compilation]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Project format version]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Keyword>QtVS_v304</Keyword>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Fallback for QTMSBUILD environment variable]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Default Qt properties]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt build settings]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Warn if Qt/MSBuild is not found]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') OR !Exists('$(QtMsBuild)\Qt.props')">]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  </Target>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt property sheet]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt targets]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\NicholasRieches\source\repos\PangoPoke\PangoPoke\PangoPoke.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+  </Section>
+  <Section>
+    <Paragraph />
+  </Section>
+</FlowDocument>
+<!--kCag8X3wQPJDyQ9WFFrYmIcCrty96viEygVIeYbLhlU=-->
