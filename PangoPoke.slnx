@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="PangoPoke/PangoPoke.vcxproj" Id="a28c5256-45f2-426e-9939-f7e04c2e63d2" />
+</Solution>
