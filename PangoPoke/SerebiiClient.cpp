@@ -1,132 +1,131 @@
 #include "SerebiiClient.h"
-// Handles sending network requests
+
+#include <QByteArray>
 #include <QNetworkAccessManager>
-// Represents the response received from website
 #include <QNetworkReply>
-// Stores information about the request we are sending
 #include <QNetworkRequest>
-// Used to search through HTML using patterns
-#include <QRegularExpression>
-// List of QString objects, used to store Pokemon types
+#include <QPixmap>
+#include <QString>
 #include <QStringList>
-// Stores and validates website URLs
 #include <QUrl>
 
 
-// Constructor for SerebiiClient
-// parent lets Qt manage ownership and cleanup of this object
 SerebiiClient::SerebiiClient(QObject* parent)
-    : QObject(parent),
-
-    // Create network manager
-    // passing "this" makes SerebiiClient its parent
-    // Qt will automatically delete it when SerebiiClient is deleted
-    networkManager_(new QNetworkAccessManager(this))
+    : QObject(parent)
 {
+    // Create one network manager for this object.
+    // "this" makes SerebiiClient its parent.
+    networkManager_ = new QNetworkAccessManager(this);
 }
 
 
-// Called when user wants to search for a Pokemon
 void SerebiiClient::searchPokemon(const QString& pokemonName)
 {
-    // Remove spaces from beginning/end and make name lowercase
-    // Example: "  Pikachu  " becomes "pikachu"
-    QString normalizedName = pokemonName.trimmed().toLower();
+    // Make a copy because we need to change the text.
+    QString normalizedName = pokemonName;
 
-    // Do not send a request if textbox is empty
+    // Remove spaces from beginning and end.
+    normalizedName = normalizedName.trimmed();
+
+    // Convert text to lowercase.
+    normalizedName = normalizedName.toLower();
+
+    // Stop if user entered nothing.
     if (normalizedName.isEmpty())
     {
-        // Signal MainWindow that request could not be made
         emit requestFailed("Enter a Pokémon name.");
         return;
     }
 
-    // Replace spaces with hyphens for URL
-    // Example: "mr mime" becomes "mr-mime"
-    normalizedName.replace(' ', '-');
+    // Replace spaces with hyphens for the URL.
+    // Example: "mr mime" becomes "mr-mime".
+    normalizedName.replace(" ", "-");
 
-    // Build URL using Pokemon name entered by user
-    const QUrl url(
-        "https://www.serebii.net/pokemon/" + normalizedName
-    );
+    // Start with the base Serebii address.
+    QString urlText = "https://www.serebii.net/pokemon/";
 
-    // Create request object for this URL
+    // Add the entered Pokemon name.
+    urlText = urlText + normalizedName;
+
+    // Convert the QString into a QUrl.
+    QUrl url(urlText);
+
+    // Create the website request.
     QNetworkRequest request(url);
 
-    // Tell website what application is making request
-    // Better than pretending our program is a web browser
+    // Tell the website which program sent the request.
     request.setRawHeader(
         "User-Agent",
         "PangoPoke/1.0 educational desktop application"
     );
 
-    // Send GET request to website
-    // GET means we are asking server to give us information
-    // reply will contain result after website responds
+    // Send the GET request.
     QNetworkReply* reply = networkManager_->get(request);
 
-    // Network requests do not finish immediately
-    // This waits for Qt to emit the finished signal
+    // When the request finishes, process its response.
     connect(
         reply,
         &QNetworkReply::finished,
         this,
-
-        // Lambda captures this SerebiiClient and reply pointer
         [this, reply]()
         {
-            // Process downloaded information once request finishes
             processReply(reply);
         }
     );
 }
 
 
-// Handles response returned from Serebii
 void SerebiiClient::processReply(QNetworkReply* reply)
 {
-    // Check if request failed
-    // Could fail because no internet, bad URL, server problem, etc.
+    // Check if the website request failed.
     if (reply->error() != QNetworkReply::NoError)
     {
-        // Send readable error message back to MainWindow
-        emit requestFailed(
-            "Website request failed: " + reply->errorString()
-        );
+        QString errorMessage = "Website request failed: ";
+        errorMessage = errorMessage + reply->errorString();
 
-        // Network reply should not be deleted immediately
-        // deleteLater safely deletes it when Qt event loop is ready
+        emit requestFailed(errorMessage);
+
         reply->deleteLater();
         return;
     }
 
-    // Read all downloaded bytes from response
-    // Convert UTF-8 website data into QString
-    const QString html =
-        QString::fromUtf8(reply->readAll());
+    // Downloaded webpage data arrives as bytes.
+    QByteArray websiteData = reply->readAll();
 
-    // DEBUG ONLY:
-    // Displays first 10,000 characters of raw HTML
-    // Leave commented out when using formatted output
-    // Otherwise pokemonFound gets emitted twice
-    // emit pokemonFound(html.left(10000));
+    // Convert the bytes into normal text.
+    QString html = QString::fromUtf8(websiteData);
 
 
-    // Regular expression pattern used to find Pokemon name
-    // Searches inside website's <title> HTML tag
-    const QRegularExpression titleExpression(
-        R"(<title[^>]*>\s*([^-<]+?)\s*-\s*#)",
+    // =========================================================
+    // FIND THE POKEMON NAME
+    // =========================================================
 
-        // Ignore uppercase/lowercase differences
-        QRegularExpression::CaseInsensitiveOption
+    // Look for the opening title tag.
+    int titleStart = html.indexOf(
+        "<title>",
+        0,
+        Qt::CaseInsensitive
     );
 
-    // Search HTML using title pattern
-    const QRegularExpressionMatch titleMatch =
-        titleExpression.match(html);
+    if (titleStart == -1)
+    {
+        emit requestFailed("Could not find the page title.");
 
-    // If pattern does not match, Pokemon name could not be parsed
-    if (!titleMatch.hasMatch())
+        reply->deleteLater();
+        return;
+    }
+
+    // Move past the text "<title>".
+    titleStart = titleStart + 7;
+
+    // Serebii titles normally place " - #" after the Pokemon name.
+    int titleEnd = html.indexOf(
+        " - #",
+        titleStart,
+        Qt::CaseInsensitive
+    );
+
+    if (titleEnd == -1)
     {
         emit requestFailed("Could not find the Pokémon name.");
 
@@ -134,65 +133,105 @@ void SerebiiClient::processReply(QNetworkReply* reply)
         return;
     }
 
-    // captured(1) gets text inside first parentheses in regex
-    // trim extra spaces from captured name
-    QString pokemonName =
-        titleMatch.captured(1).trimmed();
+    // Get the text between <title> and " - #".
+    int nameLength = titleEnd - titleStart;
 
-
-    // Pattern used to find links containing Pokemon types
-    // ([a-z]+) captures type name from URL
-    const QRegularExpression typeExpression(
-        R"(href\s*=\s*["'][^"']*/type/([a-z]+)[^"']*["'])",
-
-        // Allows Electric, electric, ELECTRIC, etc.
-        QRegularExpression::CaseInsensitiveOption
+    QString pokemonName = html.mid(
+        titleStart,
+        nameLength
     );
 
-    // globalMatch searches for every matching type link
-    // not just the first one
-    QRegularExpressionMatchIterator typeMatches =
-        typeExpression.globalMatch(html);
+    pokemonName = pokemonName.trimmed();
 
-    // Empty list where found types will be stored
+
+    // =========================================================
+    // FIND THE POKEMON TYPES
+    // =========================================================
+
     QStringList types;
 
-    // Continue while another matching type exists
-    while (typeMatches.hasNext())
+    // Start searching from the beginning of the page.
+    int searchPosition = 0;
+
+    // Continue until two types are found.
+    while (types.size() < 2)
     {
-        // Get next regex match
-        const QRegularExpressionMatch match =
-            typeMatches.next();
+        // Search for a type URL.
+        int typeStart = html.indexOf(
+            "/type/",
+            searchPosition,
+            Qt::CaseInsensitive
+        );
 
-        // captured(1) contains type name from ([a-z]+)
-        QString type = match.captured(1).trimmed();
-
-        // Ignore empty matches
-        if (type.isEmpty())
-        {
-            continue;
-        }
-
-        // Capitalize first letter
-        // Example: "electric" becomes "Electric"
-        type[0] = type[0].toUpper();
-
-        // Only add type if it is not already in list
-        // CaseInsensitive means "Fire" and "fire" count as same type
-        if (!types.contains(type, Qt::CaseInsensitive))
-        {
-            types.append(type);
-        }
-
-        // Pokemon can only have one or two types
-        // Stop searching once two unique types are found
-        if (types.size() == 2)
+        // -1 means no more type links were found.
+        if (typeStart == -1)
         {
             break;
         }
+
+        // Move past "/type/".
+        typeStart = typeStart + 6;
+
+        // Find the end of the type name.
+        int typeEnd = html.indexOf(
+            "\"",
+            typeStart
+        );
+
+        if (typeEnd == -1)
+        {
+            break;
+        }
+
+        // Get the type text.
+        int typeLength = typeEnd - typeStart;
+
+        QString type = html.mid(
+            typeStart,
+            typeLength
+        );
+
+        type = type.trimmed();
+
+        // Sometimes the URL may contain more path information.
+        // Only keep text before another slash.
+        int slashPosition = type.indexOf("/");
+
+        if (slashPosition != -1)
+        {
+            type = type.left(slashPosition);
+        }
+
+        // Remove possible HTML or URL characters.
+        int questionMarkPosition = type.indexOf("?");
+
+        if (questionMarkPosition != -1)
+        {
+            type = type.left(questionMarkPosition);
+        }
+
+        if (!type.isEmpty())
+        {
+            // Make the first letter uppercase.
+            QString firstLetter = type.left(1);
+            firstLetter = firstLetter.toUpper();
+
+            QString remainingLetters = type.mid(1);
+            remainingLetters = remainingLetters.toLower();
+
+            type = firstLetter + remainingLetters;
+
+            // Do not add the same type twice.
+            if (!types.contains(type, Qt::CaseInsensitive))
+            {
+                types.append(type);
+            }
+        }
+
+        // Continue searching after the current type.
+        searchPosition = typeEnd + 1;
     }
 
-    // No types were found in HTML
     if (types.isEmpty())
     {
         emit requestFailed(
@@ -204,25 +243,167 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     }
 
 
-    // Build final formatted text
-    // %1 replaced with Pokemon name
-    // %2 replaced with type list
-    const QString formattedInformation =
-        QString(
-            "Pokemon: %1\n"
-            "Type: %2"
-        )
-        .arg(pokemonName)
+    // =========================================================
+    // FORMAT THE TEXT
+    // =========================================================
 
-        // Join types together with comma
-        // Example: ["Fire", "Flying"] becomes "Fire, Flying"
-        .arg(types.join(", "));
+    QString formattedInformation;
 
-    // Send completed information back to MainWindow
+    formattedInformation = "Pokemon: ";
+    formattedInformation = formattedInformation + pokemonName;
+
+    formattedInformation = formattedInformation + "\nType: ";
+    formattedInformation = formattedInformation + types.join(", ");
+
+    // Send formatted text back to MainWindow.
     emit pokemonFound(formattedInformation);
 
-    // Schedule reply object to be safely deleted
-    // prevents memory leak after request is finished
+
+    // =========================================================
+    // FIND THE NORMAL SPRITE IMAGE
+    // =========================================================
+
+    // Search for the Normal Sprite alt text.
+    int altPosition = html.indexOf(
+        "alt=\"Normal Sprite\"",
+        0,
+        Qt::CaseInsensitive
+    );
+
+    if (altPosition == -1)
+    {
+        // Text information can still work without an image.
+        reply->deleteLater();
+        return;
+    }
+
+    // Search backward from alt text to find the beginning
+    // of the image element.
+    int imageTagStart = html.lastIndexOf(
+        "<img",
+        altPosition,
+        Qt::CaseInsensitive
+    );
+
+    if (imageTagStart == -1)
+    {
+        reply->deleteLater();
+        return;
+    }
+
+    // Find src=" inside this image element.
+    int sourceStart = html.indexOf(
+        "src=\"",
+        imageTagStart,
+        Qt::CaseInsensitive
+    );
+
+    if (sourceStart == -1 || sourceStart > altPosition)
+    {
+        reply->deleteLater();
+        return;
+    }
+
+    // Move past src=".
+    sourceStart = sourceStart + 5;
+
+    // Find the closing quote after the image path.
+    int sourceEnd = html.indexOf(
+        "\"",
+        sourceStart
+    );
+
+    if (sourceEnd == -1)
+    {
+        reply->deleteLater();
+        return;
+    }
+
+    // Extract the image path.
+    int sourceLength = sourceEnd - sourceStart;
+
+    QString imagePath = html.mid(
+        sourceStart,
+        sourceLength
+    );
+
+    imagePath = imagePath.trimmed();
+
+    // Convert the relative image path into a full URL.
+    QUrl relativeImageUrl(imagePath);
+
+    QUrl completeImageUrl =
+        reply->url().resolved(relativeImageUrl);
+
+    // Begin downloading the sprite.
+    downloadPokemonImage(completeImageUrl);
+
+    // Finished with the webpage response.
     reply->deleteLater();
 }
-```
+
+
+void SerebiiClient::downloadPokemonImage(const QUrl& imageUrl)
+{
+    // Create a request for the image.
+    QNetworkRequest request(imageUrl);
+
+    request.setRawHeader(
+        "User-Agent",
+        "PangoPoke/1.0 educational desktop application"
+    );
+
+    // Send the image request.
+    QNetworkReply* reply = networkManager_->get(request);
+
+    // Process it after downloading finishes.
+    connect(
+        reply,
+        &QNetworkReply::finished,
+        this,
+        [this, reply]()
+        {
+            processImageReply(reply);
+        }
+    );
+}
+
+
+void SerebiiClient::processImageReply(QNetworkReply* reply)
+{
+    // Check if the image request failed.
+    if (reply->error() != QNetworkReply::NoError)
+    {
+        QString errorMessage = "Image request failed: ";
+        errorMessage = errorMessage + reply->errorString();
+
+        emit requestFailed(errorMessage);
+
+        reply->deleteLater();
+        return;
+    }
+
+    // Read the downloaded image bytes.
+    QByteArray imageData = reply->readAll();
+
+    // Create an empty image object.
+    QPixmap pokemonImage;
+
+    // Try loading the downloaded bytes as an image.
+    bool imageLoaded = pokemonImage.loadFromData(imageData);
+
+    if (imageLoaded == false)
+    {
+        emit requestFailed(
+            "The image downloaded, but Qt could not open it."
+        );
+
+        reply->deleteLater();
+        return;
+    }
+
+    // Send the image to MainWindow.
+    emit pokemonImageReady(pokemonImage);
+
+    reply->deleteLater();
+}

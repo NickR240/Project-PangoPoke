@@ -1,153 +1,192 @@
 #include "MainWindow.h"
 #include "SerebiiClient.h"
-// Places widgets next to each other horizontally
+
 #include <QHBoxLayout>
-// Single-line text input box
+#include <QLabel>
 #include <QLineEdit>
-// Clickable button
+#include <QPixmap>
 #include <QPushButton>
-// Larger multi-line text box
 #include <QTextEdit>
-// Places widgets above and below each other vertically
 #include <QVBoxLayout>
 
 
-// Constructor for MainWindow
-// parent allows another Qt object to own this window if needed
 MainWindow::MainWindow(QWidget* parent)
-    : QWidget(parent),
-
-    // Create top input box
-    // passing "this" makes MainWindow its parent
-    inputTextBox_(new QLineEdit(this)),
-
-    // Create Search button
-    searchButton_(new QPushButton("Search", this)),
-
-    // Create large output text box
-    outputTextBox_(new QTextEdit(this)),
-
-    // Create object that handles website requests and HTML parsing
-    // MainWindow owns it and Qt deletes it automatically
-    serebiiClient_(new SerebiiClient(this))
+    : QWidget(parent)
 {
-    // Text displayed in title bar
+    // Create each GUI object one at a time.
+    inputTextBox_ = new QLineEdit(this);
+
+    searchButton_ = new QPushButton(
+        "Search",
+        this
+    );
+
+    pokemonImageLabel_ = new QLabel(this);
+
+    outputTextBox_ = new QTextEdit(this);
+
+    serebiiClient_ = new SerebiiClient(this);
+
+
+    // Set basic window settings.
     setWindowTitle("PangoPoke");
 
-    // Starting size of window in pixels
-    // width = 600, height = 400
-    resize(600, 400);
+    resize(600, 650);
 
 
-    // Gray hint text shown before user types anything
+    // Setup search input.
     inputTextBox_->setPlaceholderText(
         "Enter a Pokémon name..."
     );
 
-    // User can select/copy output but cannot edit it
+
+    // Make output text read-only.
     outputTextBox_->setReadOnly(true);
 
 
-    // Create horizontal layout for textbox and Search button
-    // No parent passed here because it will be owned by mainLayout
-    auto* searchLayout = new QHBoxLayout;
+    // Setup image area.
+    pokemonImageLabel_->setAlignment(
+        Qt::AlignCenter
+    );
 
-    // Add input textbox to left side
-    searchLayout->addWidget(inputTextBox_);
+    pokemonImageLabel_->setMinimumSize(
+        250,
+        250
+    );
 
-    // Add Search button to right side
-    searchLayout->addWidget(searchButton_);
-
-
-    // Create main vertical layout
-    // Passing "this" installs layout on MainWindow
-    auto* mainLayout = new QVBoxLayout(this);
-
-    // Add top horizontal row
-    mainLayout->addLayout(searchLayout);
-
-    // Add large output textbox underneath search row
-    mainLayout->addWidget(outputTextBox_);
+    pokemonImageLabel_->setText(
+        "Pokemon image will appear here"
+    );
 
 
-    // Connect Search button click to code inside lambda
+    // Create the top row layout.
+    QHBoxLayout* searchLayout =
+        new QHBoxLayout();
+
+    searchLayout->addWidget(
+        inputTextBox_
+    );
+
+    searchLayout->addWidget(
+        searchButton_
+    );
+
+
+    // Create the main vertical layout.
+    QVBoxLayout* mainLayout =
+        new QVBoxLayout(this);
+
+    // Add the search row first.
+    mainLayout->addLayout(
+        searchLayout
+    );
+
+    // Add the image below the search row.
+    mainLayout->addWidget(
+        pokemonImageLabel_
+    );
+
+    // Add text output under the image.
+    mainLayout->addWidget(
+        outputTextBox_
+    );
+
+
+    // Connect Search button to search code.
     connect(
-        // Object sending signal
         searchButton_,
-
-        // Signal sent when button is clicked
         &QPushButton::clicked,
-
-        // Object receiving connection
         this,
-
-        // Code that runs when button is clicked
-        // [this] lets lambda access MainWindow members
         [this]()
         {
-            // Show feedback while waiting for website response
-            outputTextBox_->setPlainText("Loading...");
+            // Show that the search has started.
+            outputTextBox_->setPlainText(
+                "Loading..."
+            );
 
-            // Ask SerebiiClient to search using text entered by user
+            // Remove the previous image.
+            pokemonImageLabel_->clear();
+
+            pokemonImageLabel_->setText(
+                "Loading image..."
+            );
+
+            // Get the name entered in the textbox.
+            QString enteredName =
+                inputTextBox_->text();
+
+            // Ask SerebiiClient to search for it.
             serebiiClient_->searchPokemon(
-                inputTextBox_->text()
+                enteredName
             );
         }
     );
 
 
-    // Makes pressing Enter behave the same as clicking Search
+    // Pressing Enter clicks the Search button.
     connect(
-        // Input box sends signal
         inputTextBox_,
-
-        // Signal sent when Enter is pressed
         &QLineEdit::returnPressed,
-
-        // Search button receives signal
         searchButton_,
-
-        // Simulate clicking the Search button
         &QPushButton::click
     );
 
 
-    // Runs when SerebiiClient successfully finds Pokemon information
+    // Receive formatted Pokemon text.
     connect(
-        // Object sending signal
         serebiiClient_,
-
-        // Custom success signal from SerebiiClient
         &SerebiiClient::pokemonFound,
-
-        // MainWindow receives signal
         this,
-
-        // information contains formatted Pokemon result
         [this](const QString& information)
         {
-            // Replace current textbox contents with result
-            outputTextBox_->setPlainText(information);
+            outputTextBox_->setPlainText(
+                information
+            );
         }
     );
 
 
-    // Runs when SerebiiClient reports a request or parsing error
+    // Receive downloaded Pokemon image.
     connect(
-        // Object sending signal
         serebiiClient_,
-
-        // Custom failure signal from SerebiiClient
-        &SerebiiClient::requestFailed,
-
-        // MainWindow receives signal
+        &SerebiiClient::pokemonImageReady,
         this,
+        [this](const QPixmap& image)
+        {
+            // Get the current label width.
+            int labelWidth =
+                pokemonImageLabel_->width();
 
-        // errorMessage contains readable error text
+            // Get the current label height.
+            int labelHeight =
+                pokemonImageLabel_->height();
+
+            // Scale image while keeping its original shape.
+            QPixmap scaledImage = image.scaled(
+                labelWidth,
+                labelHeight,
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation
+            );
+
+            // Display the scaled image.
+            pokemonImageLabel_->setPixmap(
+                scaledImage
+            );
+        }
+    );
+
+
+    // Receive errors from SerebiiClient.
+    connect(
+        serebiiClient_,
+        &SerebiiClient::requestFailed,
+        this,
         [this](const QString& errorMessage)
         {
-            // Display error inside large output textbox
-            outputTextBox_->setPlainText(errorMessage);
+            outputTextBox_->setPlainText(
+                errorMessage
+            );
         }
     );
 }
