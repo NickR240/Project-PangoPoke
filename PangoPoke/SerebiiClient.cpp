@@ -54,26 +54,18 @@ void SerebiiClient::searchPokemon(const QString& pokemonName)
     QNetworkRequest request(url);
 
     // Tell the website which program sent the request.
-    request.setRawHeader(
-        "User-Agent",
-        "PangoPoke/1.0 educational desktop application"
-    );
+    request.setRawHeader("User-Agent","PangoPoke/1.0 educational desktop application");
 
     // Send the GET request.
     QNetworkReply* reply = networkManager_->get(request);
 
     // When the request finishes, process its response.
-    connect(
-        reply,
-        &QNetworkReply::finished,
-        this,
-        [this, reply]()
+    connect(reply,&QNetworkReply::finished,this,[this, reply]()
         {
             processReply(reply);
         }
     );
 }
-
 
 void SerebiiClient::processReply(QNetworkReply* reply)
 {
@@ -101,11 +93,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     // =========================================================
 
     // Look for the opening title tag.
-    int titleStart = html.indexOf(
-        "<title>",
-        0,
-        Qt::CaseInsensitive
-    );
+    int titleStart = html.indexOf("<title>",0,Qt::CaseInsensitive);
 
     if (titleStart == -1)
     {
@@ -115,15 +103,8 @@ void SerebiiClient::processReply(QNetworkReply* reply)
         return;
     }
 
-    // Move past the text "<title>".
-    titleStart = titleStart + 7;
-
     // Serebii titles normally place " - #" after the Pokemon name.
-    int titleEnd = html.indexOf(
-        " - #",
-        titleStart,
-        Qt::CaseInsensitive
-    );
+    int titleEnd = html.indexOf(" - ",titleStart,Qt::CaseInsensitive);
 
     if (titleEnd == -1)
     {
@@ -133,14 +114,12 @@ void SerebiiClient::processReply(QNetworkReply* reply)
         return;
     }
 
-    // Get the text between <title> and " - #".
+    // Get the text between <title> and "</title>".
     int nameLength = titleEnd - titleStart;
 
-    QString pokemonName = html.mid(
-        titleStart,
-        nameLength
-    );
+    QString pokemonName = html.mid(titleStart,nameLength);
 
+	pokemonName = pokemonName.remove("<title>", Qt::CaseInsensitive);
     pokemonName = pokemonName.trimmed();
 
 
@@ -157,11 +136,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     while (types.size() < 2)
     {
         // Search for a type URL.
-        int typeStart = html.indexOf(
-            "/type/",
-            searchPosition,
-            Qt::CaseInsensitive
-        );
+        int typeStart = html.indexOf("/type/",searchPosition,Qt::CaseInsensitive);
 
         // -1 means no more type links were found.
         if (typeStart == -1)
@@ -173,10 +148,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
         typeStart = typeStart + 6;
 
         // Find the end of the type name.
-        int typeEnd = html.indexOf(
-            "\"",
-            typeStart
-        );
+        int typeEnd = html.indexOf("\"",typeStart);
 
         if (typeEnd == -1)
         {
@@ -186,10 +158,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
         // Get the type text.
         int typeLength = typeEnd - typeStart;
 
-        QString type = html.mid(
-            typeStart,
-            typeLength
-        );
+        QString type = html.mid(typeStart,typeLength);
 
         type = type.trimmed();
 
@@ -234,9 +203,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
 
     if (types.isEmpty())
     {
-        emit requestFailed(
-            "The page was downloaded, but no Pokémon types were found."
-        );
+        emit requestFailed("The page was downloaded, but no Pokémon types were found.");
 
         reply->deleteLater();
         return;
@@ -264,11 +231,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     // =========================================================
 
     // Search for the Normal Sprite alt text.
-    int altPosition = html.indexOf(
-        "alt=\"Normal Sprite\"",
-        0,
-        Qt::CaseInsensitive
-    );
+    int altPosition = html.indexOf("alt=\"Normal Sprite\"",0,Qt::CaseInsensitive);
 
     if (altPosition == -1)
     {
@@ -279,11 +242,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
 
     // Search backward from alt text to find the beginning
     // of the image element.
-    int imageTagStart = html.lastIndexOf(
-        "<img",
-        altPosition,
-        Qt::CaseInsensitive
-    );
+    int imageTagStart = html.lastIndexOf("<img",altPosition,Qt::CaseInsensitive);
 
     if (imageTagStart == -1)
     {
@@ -292,11 +251,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     }
 
     // Find src=" inside this image element.
-    int sourceStart = html.indexOf(
-        "src=\"",
-        imageTagStart,
-        Qt::CaseInsensitive
-    );
+    int sourceStart = html.indexOf("src=\"",imageTagStart,Qt::CaseInsensitive);
 
     if (sourceStart == -1 || sourceStart > altPosition)
     {
@@ -308,10 +263,7 @@ void SerebiiClient::processReply(QNetworkReply* reply)
     sourceStart = sourceStart + 5;
 
     // Find the closing quote after the image path.
-    int sourceEnd = html.indexOf(
-        "\"",
-        sourceStart
-    );
+    int sourceEnd = html.indexOf("\"",sourceStart);
 
     if (sourceEnd == -1)
     {
